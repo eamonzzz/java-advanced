@@ -17,6 +17,16 @@ public class RealSubjectJDKDynamicProxyTest {
 
     @Test
     public void test(){
+        Subject realSubject = new RealSubject();
+        RealSubjectJDKDynamicProxy proxy = new RealSubjectJDKDynamicProxy(realSubject);
+        Subject instance = (Subject) proxy.getInstance();
+        instance.request();
+        System.out.println(realSubject.getClass());
+        System.out.println(instance.getClass());
+    }
+
+    @Test
+    public void test1(){
         System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
         RealSubject realSubject = new RealSubject();
 
