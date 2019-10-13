@@ -62,6 +62,12 @@ public class MimeProxy {
 
     }
 
+    /**
+     * 生成 代理类
+     *
+     * @param interfaces
+     * @return
+     */
     private static String generateSrc(Class<?>[] interfaces) {
         // 这里使用 StringBuffer 线程安全
         StringBuffer sb = new StringBuffer();
@@ -123,6 +129,12 @@ public class MimeProxy {
         return sb.toString();
     }
 
+    /**
+     * 获取返回值类型
+     *
+     * @param returnClass
+     * @return
+     */
     private static String getReturnEmptyCode(Class<?> returnClass) {
         if (mappings.containsKey(returnClass)) {
             return "return 0;";
@@ -133,6 +145,13 @@ public class MimeProxy {
         }
     }
 
+    /**
+     * 拼接 invocationHandler 执行代码
+     *
+     * @param code
+     * @param returnClass
+     * @return
+     */
     private static String getCaseCode(String code, Class<?> returnClass) {
         if (mappings.containsKey(returnClass)) {
             return "((" + mappings.get(returnClass).getName() + ")" + code + ")." + returnClass.getSimpleName() + "Value()";
@@ -140,10 +159,22 @@ public class MimeProxy {
         return code;
     }
 
+    /**
+     * 判断是否有返回值
+     *
+     * @param clazz
+     * @return
+     */
     private static boolean hasReturnValue(Class<?> clazz) {
         return clazz != void.class;
     }
 
+    /**
+     * 首字母转换为小写
+     *
+     * @param src
+     * @return
+     */
     private static String toLowerFirstCase(String src) {
         char[] chars = src.toCharArray();
         chars[0] += 32;
