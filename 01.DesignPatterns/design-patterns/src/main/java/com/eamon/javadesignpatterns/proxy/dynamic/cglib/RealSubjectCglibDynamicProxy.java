@@ -13,9 +13,13 @@ import java.lang.reflect.Method;
 public class RealSubjectCglibDynamicProxy implements MethodInterceptor {
 
     public Object getInstance(Class<?> clazz) {
+        // 通过CGLIB动态代理获取代理对象的过程
         Enhancer enhancer = new Enhancer();
+        // 要把哪个设置为即将生成的新类父类
         enhancer.setSuperclass(clazz);
+        // 设置回调对象
         enhancer.setCallback(this);
+        // 创建代理对象
         return enhancer.create();
     }
 
