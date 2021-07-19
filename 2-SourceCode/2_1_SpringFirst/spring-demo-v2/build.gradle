@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'war'
+    id 'idea'
+    id "org.gretty" version "3.0.3"
+}
+//apply plugin: 'jetty'
+
+group 'com.eamon'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+    mavenCentral()
+}
+
+gretty {
+    httpPort = 8081
+    contextPath = '/'
+    // ... many more properties
+}
+
+dependencies {
+    implementation 'javax.servlet:javax.servlet-api:3.1.0'
+    implementation 'org.slf4j:slf4j-api:1.7.30'
+    implementation 'org.slf4j:slf4j-simple:1.7.30'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+}
