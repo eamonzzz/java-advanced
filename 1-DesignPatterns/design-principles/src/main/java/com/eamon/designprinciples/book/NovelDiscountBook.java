@@ -10,6 +10,6 @@ public class NovelDiscountBook extends NovelBook {
     }
 
     public double getDiscountPrice(){
-        return super.getPrice() * 0.85;
+        return super.getPrice() * 0.75;
     }
 }

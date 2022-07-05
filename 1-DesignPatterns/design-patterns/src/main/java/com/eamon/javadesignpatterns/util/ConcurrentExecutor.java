@@ -25,6 +25,7 @@ public class ConcurrentExecutor {
                         //执行此方法用于获取执行许可，当总计未释放的许可数不超过executeCount时,
                         //则允许同性，否则线程阻塞等待，知道获取到许可
                         semaphore.acquire();
+                        // 执行处理
                         runHandler.handler();
                         //释放许可
                         semaphore.release();
@@ -35,7 +36,8 @@ public class ConcurrentExecutor {
                 }
             });
         }
-        countDownLatch.await();//线程阻塞，知道闭锁值为0时，阻塞才释放，继续往下执行
+        //线程阻塞，知道闭锁值为0时，阻塞才释放，继续往下执行
+        countDownLatch.await();
         executorService.shutdown();
     }
     public interface RunHandler{
